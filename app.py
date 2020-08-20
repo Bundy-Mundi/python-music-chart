@@ -1,11 +1,13 @@
-from flask import Flask
+from flask import Flask, jsonify
 from extractor import Extractor
 import json
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "HELLO WORLD"
+    response = {}
+    response["MESSAGE"] = f"Welcome to our awesome platform!!"
+    return jsonify(response)
 
 # Melon
 @app.route('/melon')
@@ -25,3 +27,7 @@ def billboard():
     e = Extractor()
     chart = e.Chart
     return chart.billboard_chart()
+
+if __name__ == '__main__':
+    # Threaded option to enable multiple instances for multiple user access support
+    app.run(threaded=True, port=5000)

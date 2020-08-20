@@ -34,17 +34,17 @@ class Extractor:
             return ("Chart Class")
         
         def melon_chart(self, up_to = 100):
-            req = requests.get( url=self.parent.melon_url, headers = {"User-Agent": "XY"} )
+            req = requests.get(url=self.parent.melon_url, headers = {"User-Agent": "XY"} )
             raw_result = melon.extract_melon(self.parent.html_parser(req.text), up_to=up_to)
             result = self.parent.json_parser(raw_result)
             return result
         def bugs_chart(self, up_to = 100):
-            req = requests.get( url=self.parent.bugs_url, headers = {"User-Agent": "XY"} )
-            raw_result = melon.extract_melon(self.parent.html_parser(req.text), up_to=up_to)
+            req = requests.get(url=self.parent.bugs_url, headers = {"User-Agent": "XY"} )
+            raw_result = bugs.extract_bugs(self.parent.html_parser(req.text), up_to=up_to)
             result = self.parent.json_parser(raw_result)
             return result
         def billboard_chart(self, up_to = 100):
-            req = requests.get( url=self.parent.billboard_url, headers = {"User-Agent": "XY"} )
-            raw_result = melon.extract_melon(self.parent.html_parser(req.text), up_to=up_to)
+            req = requests.get(url=self.parent.billboard_url, headers = {"User-Agent": "XY"} )
+            raw_result = billboard.extract_billboard(self.parent.html_parser(req.text), up_to=up_to)
             result = self.parent.json_parser(raw_result)
             return result
